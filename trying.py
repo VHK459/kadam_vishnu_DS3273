@@ -58,7 +58,7 @@ def test_all():
     
     # Step 6: Inference check
     print("🔎 Running predictions on sample images...")
-    predictions = the_predictor(model, sample_image_paths[:5])  # Predict on first 5 images
+    predictions = the_predictor( sample_image_paths[:5])  # Predict on first 5 images
     print(f"Predictions on 5 images: {predictions}")
 
 if __name__ == "__main__":

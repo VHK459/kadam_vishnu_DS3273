@@ -3,7 +3,7 @@ from PIL import Image
 from torchvision import transforms
 from config import resize_x, resize_y
 import os
-
+from interface import TheModel
 
 inference_transform = transforms.Compose([
     transforms.Resize((resize_x, resize_y)),
@@ -34,10 +34,17 @@ def validate_data_folder(data_path="data/"):
 
 
 
-def cryptic_inf_f(model, image_paths):
+def cryptic_inf_f( image_paths):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = TheModel().to(device)
     model.eval()
-    images = []
 
+    loaded_model = TheModel().to(device)
+    loaded_model.load_state_dict(torch.load("checkpoints/final_weights.pth", map_location=device))
+    loaded_model.eval()
+    
+    images = []
+    
     for path in image_paths:
         image = Image.open(path).convert("RGB")
         image = inference_transform(image).unsqueeze(0)
