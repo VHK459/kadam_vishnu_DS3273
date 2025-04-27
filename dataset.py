@@ -29,6 +29,6 @@ class TrafficSignDataset(Dataset):
             image = self.transform(image)
         return image, self.labels[idx]
 
-def unicornLoader(dataset, shuffle=True):
+def unicornLoader(dataset = TrafficSignDataset(), shuffle=True):
     from config import batchsize
     return DataLoader(dataset, batch_size=batchsize, shuffle=shuffle)

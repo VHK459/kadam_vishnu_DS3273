@@ -35,9 +35,9 @@ def test_all():
     print("✅ Model initialized.")
 
     # Step 3: Load dataset and dataloader
-    dataset = TheDataset("data")
-    loader = the_dataloader(dataset, shuffle=True)
-    print(f"✅ Dataset and Dataloader initialized. Dataset size: {len(dataset)}")
+    dataset = TheDataset()
+    loader = the_dataloader(dataset=dataset, shuffle=True)
+    print(f"✅ Dataset and Dataloader initialized. Dataset size: ")
 
     # Step 4: Train model
     print("📚 Starting training...")
