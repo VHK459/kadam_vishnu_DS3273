@@ -16,3 +16,6 @@ The dataset was downloaded from kaggle. [Download page ](https://www.kaggle.com/
 
 ## Using the predict function.
 If input is a list of images, we can use the predict function as it is. If input is similar to data folder, with subfolder containing examples of each class, the please use `validate_data_folder` with data folder path as input.
+
+## Evaluation Metric
+The performance of the model is evaluated using accuracy, which measures the proportion of correctly classified traffic sign images out of the total number of images. Accuracy is a straightforward and widely used metric for classification tasks, providing a clear indication of the model's overall performance in identifying the correct class for each image.
