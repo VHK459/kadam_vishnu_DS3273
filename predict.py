@@ -2,12 +2,37 @@ import torch
 from PIL import Image
 from torchvision import transforms
 from config import resize_x, resize_y
+import os
+
 
 inference_transform = transforms.Compose([
     transforms.Resize((resize_x, resize_y)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
+
+
+def validate_data_folder(data_path="data/"):
+    all_images = []
+
+    # Go through each subfolder (each class)
+    classes = [folder for folder in os.listdir(data_path) if os.path.isdir(os.path.join(data_path, folder))]
+    if len(classes) == 0:
+        raise ValueError(f"No class folders found inside `{data_path}/`.")
+
+    for cls in classes:
+        cls_path = os.path.join(data_path, cls)
+        images = [os.path.join(cls_path, img) for img in os.listdir(cls_path) if img.lower().endswith(('.jpg', '.jpeg', '.png'))]
+        
+        if len(images) < 10:
+            raise ValueError(f"Class `{cls}` has only {len(images)} images. Need at least 10.")
+        
+        all_images.extend(images[:10])  # Take only first 10 images from each class
+
+    # print(f"✅ Found {len(classes)} classes, with 10 images each.")
+    return all_images
+
+
 
 def cryptic_inf_f(model, image_paths):
     model.eval()

@@ -13,3 +13,6 @@ For this classification task, I will use a basic Convolutional Neural Network (C
 
 ## Downloading dataset
 The dataset was downloaded from kaggle. [Download page ](https://www.kaggle.com/datasets/ahemateja19bec1025/traffic-sign-dataset-classification)
+
+## Using the predict function.
+If input is a list of images, we can use the predict function as it is. If input is similar to data folder, with subfolder containing examples of each class, the please use `validate_data_folder` with data folder path as input.
